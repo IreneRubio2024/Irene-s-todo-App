@@ -20,7 +20,7 @@ const RootStack = createNativeStackNavigator({
     Home: {
       screen: HomeScreen,
       options: {
-        title: "My Todo-App",
+        title: "Irene's Todo-App",
       },
     },
     Details: {
