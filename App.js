@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from "react";
+import { createStaticNavigation } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "./Home";
+import DetailsScreen from "./Details";
+import ModalScreen from "./Modal";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const RootStack = createNativeStackNavigator({
+  initialRouteName: "Home",
+  screenOptions: {
+    headerStyle: {
+      backgroundColor: "#3F49DD",
+    },
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold",
+    },
+  },
+  screens: {
+    Home: {
+      screen: HomeScreen,
+      options: {
+        title: "My Todo-App",
+      },
+    },
+    Details: {
+      screen: DetailsScreen,
+      options: {
+        title: "Details",
+      },
+    },
+    Modal: {
+      screen: ModalScreen,
+      options: {
+        presentation: "modal",
+      },
+    },
   },
 });
+
+const Navigation = createStaticNavigation(RootStack);
+
+export default function App() {
+  return <Navigation />;
+}
